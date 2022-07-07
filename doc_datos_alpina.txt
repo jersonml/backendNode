@@ -1,0 +1,18 @@
+Base de datos postresql GCLOUD
+
+id-instancia: bd-alpina
+Password: CkozoqzdsFiAOkjf
+tama�o: 10gb
+tipo de conexi�n: �nicamente ssl
+
+
+Bucket de archivos.
+
+Tama�o: 10 Gb
+Nombre: alpina-fridges-video
+link URL: https://storage.cloud.google.com/alpina-fridges-video/
+link for gsutil: gs://alpina-fridges-video
+
+
+user_db: practico_user
+Password_db: YvimMNsh77

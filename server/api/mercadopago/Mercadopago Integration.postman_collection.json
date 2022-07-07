@@ -1,0 +1,412 @@
+{
+	"info": {
+		"_postman_id": "3e028cd0-f803-4556-9cf1-8c3aebf8310c",
+		"name": "Mercadopago Integration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "MP",
+			"item": [
+				{
+					"name": "Listar tipos de identificación",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.mercadopago.com/v1/identification_types?public_key=TEST-703e6af4-36af-4e55-9d8f-e785ff77de40",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mercadopago",
+								"com"
+							],
+							"path": [
+								"v1",
+								"identification_types"
+							],
+							"query": [
+								{
+									"key": "public_key",
+									"value": "TEST-703e6af4-36af-4e55-9d8f-e785ff77de40"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear un cliente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"lu.es.mu.mo@gmail.com\",\n    \"first_name\": \"Lucas\",\n    \"last_name\": \"Muñoz\",\n    \"phone\": {\n        \"area_code\": \"057\",\n        \"number\": \"3502847835\"\n    },\n    \"identification\": {\n        \"type\": \"CC\",\n        \"number\": \"1020485417\"\n    },\n    \"address\": {\n        \"zip_code\": \"050042\",\n        \"street_name\": \"Calle 104 A # 76 - 50\"\n    },\n    \"description\": \"Cliente de prueba para desarrollo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.mercadopago.com/v1/customers?access_token=TEST-3069754945804033-011520-6828382dbe4b7480241a768143c18900-436472912",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mercadopago",
+								"com"
+							],
+							"path": [
+								"v1",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "TEST-3069754945804033-011520-6828382dbe4b7480241a768143c18900-436472912"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener tarjetas del cliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.mercadopago.com/v1/customers/480321330-HkMZakalYrsts2/cards?access_token=TEST-3069754945804033-011520-6828382dbe4b7480241a768143c18900-436472912",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mercadopago",
+								"com"
+							],
+							"path": [
+								"v1",
+								"customers",
+								"480321330-HkMZakalYrsts2",
+								"cards"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "TEST-3069754945804033-011520-6828382dbe4b7480241a768143c18900-436472912"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Guardar tarjeta en cliente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"token\": \"d701fb812aebc628e35eb66d1a60b67f\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.mercadopago.com/v1/customers/480321330-HkMZakalYrsts2/cards?access_token=TEST-3069754945804033-011520-6828382dbe4b7480241a768143c18900-436472912",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mercadopago",
+								"com"
+							],
+							"path": [
+								"v1",
+								"customers",
+								"480321330-HkMZakalYrsts2",
+								"cards"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "TEST-3069754945804033-011520-6828382dbe4b7480241a768143c18900-436472912"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Card Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"card_number\": \"5254133674403564\",\n\t\"security_code\": \"123\",\n\t\"expiration_month\": \"11\",\n\t\"expiration_year\": \"2025\",\n\t\"cardholder\": {\n\t\t\"name\": \"Lucas Esteban Muñoz Montes\",\n\t\t\"identification\": {\n            \"number\": \"1020485417\",\n            \"type\": \"CC\"\n        }\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.mercadopago.com/v1/card_tokens?public_key=TEST-703e6af4-36af-4e55-9d8f-e785ff77de40",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mercadopago",
+								"com"
+							],
+							"path": [
+								"v1",
+								"card_tokens"
+							],
+							"query": [
+								{
+									"key": "public_key",
+									"value": "TEST-703e6af4-36af-4e55-9d8f-e785ff77de40"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Clientes y Tarjetas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.mercadopago.com/v1/customers/search?access_token=TEST-3069754945804033-011520-6828382dbe4b7480241a768143c18900-436472912",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mercadopago",
+								"com"
+							],
+							"path": [
+								"v1",
+								"customers",
+								"search"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "TEST-3069754945804033-011520-6828382dbe4b7480241a768143c18900-436472912"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Métodos de pago",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.mercadopago.com/v1/payment_methods?public_key=TEST-703e6af4-36af-4e55-9d8f-e785ff77de40",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mercadopago",
+								"com"
+							],
+							"path": [
+								"v1",
+								"payment_methods"
+							],
+							"query": [
+								{
+									"key": "public_key",
+									"value": "TEST-703e6af4-36af-4e55-9d8f-e785ff77de40"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar cliente por Email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"sebastian.narvasez@grupobootes.com\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.mercadopago.com/v1/customers/search?access_token=TEST-3069754945804033-011520-6828382dbe4b7480241a768143c18900-436472912",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mercadopago",
+								"com"
+							],
+							"path": [
+								"v1",
+								"customers",
+								"search"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "TEST-3069754945804033-011520-6828382dbe4b7480241a768143c18900-436472912"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar tarjetas por cliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.mercadopago.com/v1/customers/533885735-Not4A3CRcoIZqF/cards?access_token=TEST-3069754945804033-011520-6828382dbe4b7480241a768143c18900-436472912",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mercadopago",
+								"com"
+							],
+							"path": [
+								"v1",
+								"customers",
+								"533885735-Not4A3CRcoIZqF",
+								"cards"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "TEST-3069754945804033-011520-6828382dbe4b7480241a768143c18900-436472912"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Backend",
+			"item": [
+				{
+					"name": "Realizar Pago",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"valor\": 156000,\n\t\"descripcion\": \"Call Of Duty Modern Warfare Ps4. Fisico. Sellado. Español\",\n\t\"cuotas\": 1,\n\t\"metodoPago\": \"master\",\n\t\"idUsuario\": \"U0001\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/mercadopago/realizarPago",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"mercadopago",
+								"realizarPago"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar card token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\": \"U0001\",\n\t\"cardToken\": \"722c7a839361fd4a937f49c3c70721fd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/mercadopago/agregarCardToken",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"mercadopago",
+								"agregarCardToken"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
